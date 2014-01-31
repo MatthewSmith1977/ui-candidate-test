@@ -1,30 +1,54 @@
      // Example unit test function
      function divide( a, b ) {
         // To see the test pass, uncomment the following line
-        //return a / b;
+        return a / b;
      }
 
      // Write a function that takes a single argument (a string) and returns the string reversed.
      function reverseString(str) {
-         // FILL THIS IN
+  			var o = '';
+  			for (var i = str.length - 1; i >= 0; i--) {
+    			o += str[i];
+			}
+  			return o;
      }
 
      // Write a function that takes an array of numbers and returns the minimum value
      function findMinValue(values) {
-         // FILL THIS IN
+         values.sort();
+		 var min = values[0];
+		 return min;
      }
 
      // Write a function that takes an array and returns the distinct values only (i.e. removes duplicates)
      function findDistinctValues(values) {
-         // FILL THIS IN
-     }
+        var distinct = [];
+		for (var i = 0; i < values.length; i++){
+   			if (distinct.indexOf(values[i]) > -1){
+   				
+   			}else{
+                distinct.push(values[i]);
+			}
+		}
+     	return distinct;
+	 }
 
      // Write a function that logs the numbers from 1 to 100 to the console.
      // For multiples of three print "Fizz" instead of the number.
      // For multiples of five print "Buzz".
      // For numbers which are multiples of both three and five print "FizzBuzz".
      function doFizzBuzz() {
-         // FILL THIS IN
+         for (var i = 1; i <= 100; i++){
+		 	if (i % 3 == 0 && i % 5 == 0){
+				console.log("FizzBuzz");
+			} else  if (i % 3 == 0){
+				console.log("Fizz");
+			} else  if (i % 5 == 0) {
+				console.log("Buzz");
+			} else {
+				console.log(i);
+			}
+		 }
      }
 
      // You have a master array of strings, where each element is a fruit name.
@@ -32,7 +56,12 @@
      // For the purpose of the exercise, we will call the master array fruits and the second array fruitsToRemove.
      // Write the function that will remove the values contained in fruitsToRemove from the array fruits.
      function removeFruits(fruits, fruitsToRemove) {
-         // FILL THIS IN
+		for (var i = 0; i < fruits.length; i++){
+   			if (fruitsToRemove.indexOf(fruits[i]) > -1){
+      			fruits.splice(i,1);
+			}  
+		}
+       return fruits;
      }
 
      // Write a function to push either a simple value or an array of values onto a specified array.
@@ -40,25 +69,46 @@
      // If toPush is a simple value, it should be pushed onto array as an element.
      // If toPush is an array, all of its elements should be pushed onto array. Your solution should modify array (ie. not return a new array).
      function pushOntoArray(array, toPush) {
-         // FILL THIS IN
+         if (toPush instanceof Array) {
+			 for(var i=0; i<toPush.length; i++){
+				array.push(toPush[i]); 
+			 }
+		 } else {
+		 	array.push(toPush);
+		 }
      }
 
      // Given a string, sourceStr, write some code that will split this string using comma as your delimiter, and producing an empty array if the string is empty.
      function splitListStrUsingComma(sourceStr) {
-         // FILL THIS IN
+         var array = sourceStr.split(',');
      }
 
      // Write a function that will take any number of arguments and return their sum
      function sum() {
-         // FILL THIS IN
+         var args = sum.arguments;
+		 var total = 0;
+		 
+		 for(var i = 0; i < args.length; i++){
+			 total += args[i];
+		 }
+		 return total;
      }
 
      // Write a function that will return true if a specified string consists of only whitespace.
      function isOnlyWhitespace(sourceStr) {
-         // FILL THIS IN
+         if (sourceStr.match(/^\s*$/)) {
+			 return true;
+		 }
      }
 
      // write an example of a javascript closure
+     function myName(name) {
+     	var text = 'My name is ' + name;
+     	var consoleName = function(){console.log(text);}
+     	consoleName();	
+     }
+     
+     myName('Matt');
 
      // define a json object that represents a collection of people.
      // each person should have the following properties
@@ -96,3 +146,47 @@
      // to the div with an id of "foobar"
      // When the first link is clicked, all the checkboxes should be checked (i.e. check all)
      // When the second link is clicked, all the checkboxes should be unchecked (i.e. uncheck all)
+	 function addCB(){
+		for (var i = 0; i <=5; i++) {
+			 var length = 0;
+		var checkbox = document.createElement('input');
+		checkbox.type = "checkbox";
+		checkbox.name = 'name' + i;
+		checkbox.value = i;
+		checkbox.id = "id" + i;
+		checkbox.checked = false;
+				
+		var label = document.createElement('label')
+		label.htmlFor = "id";
+		label.appendChild(document.createTextNode(i));
+		
+		foobar.appendChild(checkbox);
+		foobar.appendChild(label);
+		
+		}
+		
+		var selectAllLink = document.createElement('a');
+  		selectAllLink.setAttribute('href',"#foobar");
+ 		selectAllLink.innerText = "select all";
+		selectAllLink.setAttribute('onclick','checkAll()');
+  		foobar.appendChild(selectAllLink);
+		
+		var deselectAllLink = document.createElement('a');
+  		deselectAllLink.setAttribute('href',"#foobar");
+ 		deselectAllLink.innerText = "deselect all";
+		deselectAllLink.setAttribute('onclick','console.log(foobar.checkbox)');
+  		foobar.appendChild(deselectAllLink);
+	 }
+	 
+	 function checkAll() {
+		id1.checked=true;	
+		}
+	 }
+	 
+	 function uncheckAll(length) {
+		for (var i=0; i< length; i++){
+			var id = id + i
+			id.checked = false;	
+		}
+	 }
+	 
